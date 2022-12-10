@@ -9,7 +9,6 @@ const Header = () => {
     const location = useLocation()
     const params = useParams()
     const navigate = useNavigate()
-    console.log(location);
     const buttonSwitch = () => {
         switch (location.pathname) {
             case "/":
@@ -28,7 +27,7 @@ const Header = () => {
 
                     >Pokêdex</Button>
                 )
-            case `/pokemon/${params.pokemonID}`:
+            case `/pokemon/${params.pokemonName}`:
                 return (
                     <Button
                         bgColor={"#FF6262"}
@@ -65,6 +64,7 @@ const Header = () => {
                         color={"#000000"}
                         fontWeight={"700"}
                         textDecoration={"underline"}
+                        onClick={()=>goToHomePage(navigate)}
                     >Todos Pokémons</Link>
                 </Flex>
             }
