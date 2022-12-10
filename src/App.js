@@ -4,6 +4,9 @@ import { GlobalContext } from './contexts/GlobalContext'
 import Router from './routes/Router'
 
 
+const context = {
+  
+}
 
 const App = () => {
   return (
