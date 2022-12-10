@@ -1,8 +1,18 @@
+import { ChakraProvider } from '@chakra-ui/react'
 import React from 'react'
+import { GlobalContext } from './contexts/GlobalContext'
+import Router from './routes/Router'
+
+
 
 const App = () => {
   return (
-    <div>App</div>
+    <GlobalContext.Provider value={{}}>
+      <ChakraProvider>
+        <Router/>
+      </ChakraProvider>
+    </GlobalContext.Provider>
+    
   )
 }
 
