@@ -1,13 +1,16 @@
 import { Box, Button, ButtonGroup, Flex, Heading, Image, Link, Skeleton, Stack, Text } from '@chakra-ui/react'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Layout from '../../components/Layout/Layout'
 import Card from '../../components/Card/Card'
 import axios from 'axios'
 import { BASE_URL } from '../../constants/BASE_URL'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import { goToHomePage } from '../../routes/coordinator'
+import { GlobalContext } from '../../contexts/GlobalContext'
 
 const HomePage = () => {
+  const context = useContext(GlobalContext)
+  const {pokedex, setPokedex, removePokedexFromLocalStorage } = context
   const [isLoading, setIsLoading] = useState(false)
   const [pokemons, setPokemons] = useState([])
   const [numbMin, setNumbMin] = useState(0)
@@ -29,6 +32,7 @@ const HomePage = () => {
     setNumbMin(((pageNumber+value)-1) * perPage)
     }
   }
+  
 
   useEffect(() => {
     fetchPokemons()

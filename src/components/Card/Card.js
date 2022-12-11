@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { Box, Button, Flex, Heading, Image, Link, Skeleton, Stack, Text } from '@chakra-ui/react'
+import { Button, Flex, Heading, Image, Link, Skeleton, Stack, Text } from '@chakra-ui/react'
 import grassI from "../../assets/img-criar/grass.png"
 import poisonI from "../../assets/img-criar/poison.png"
 import pokeBola from "../../assets/pokebola.png"
@@ -13,6 +13,9 @@ import { GlobalContext } from '../../contexts/GlobalContext'
 
 const Card = ({ pokemonName }) => {
     const context = useContext(GlobalContext)
+    const {  pokedex,
+        handleChangePokedex
+      } = context
     const location = useLocation()
     const navigate = useNavigate()
     const [pokemon, setPokemon] = useState({})
@@ -24,11 +27,21 @@ const Card = ({ pokemonName }) => {
         fetchPokemonByName()
     }, [])
 
+    
+
     const fetchPokemonByName = async () => {
         try {
             setIsLoading(true)
             const response = await axios.get(`${BASE_URL}/pokemon/${pokemonName}`)
             setPokemon(response.data)
+            if (response.data.types[0]) {
+                setType1(typePokemon[response.data.types[0].type.name])
+                }
+            if (response.data.types[1]) {
+                console.log((typePokemon[response.data.types[0].type.name]))
+                console.log((typePokemon[response.data.types[1].type.name]))
+            setType2(typePokemon[response.data.types[1].type.name])
+            }
             setIsLoading(false)
 
         } catch (error) {
@@ -38,7 +51,9 @@ const Card = ({ pokemonName }) => {
     }
 
 
+
     return (
+        <Skeleton isLoaded={!isLoading}>
 
         <Flex
             bgImage={pokeBola}
@@ -47,7 +62,7 @@ const Card = ({ pokemonName }) => {
             w={"440px"}
             h={"210px"}
             borderRadius={"12px"}
-            bgColor={"#70B873"}
+            bgColor={type1 && type1.color}
             marginTop={"36px"}
 
 
@@ -62,16 +77,17 @@ const Card = ({ pokemonName }) => {
                 </Skeleton>
                 <Skeleton isLoaded={!isLoading}>
 
-                    <Flex paddingTop={"8px"} gap={"8px"}>
-                        <Image src={"./type/grassLabel.svg"} alt='Shield first attribute' />
+                <Flex paddingTop={"8px"} gap={"8px"}>
+                {pokemon.types &&
+                <>
+                <Image src={`./type/${pokemon.types[0].type.name}Label.svg` } alt='Shield first attribute' />
+                {pokemon.types[1] &&
+                  <Image src={`./type/${pokemon.types[1].type.name}Label.svg`} alt='Shield second attribute' />
 
-                        {
-
-                            <Image src={"./type/poisonLabel.svg"} alt='Shield second attribute' />
-                        }
-
-
-                    </Flex>
+                }
+                </>}
+                
+              </Flex>
                 </Skeleton>
                 <Link
                     fontSize={"16px"}
@@ -97,13 +113,14 @@ const Card = ({ pokemonName }) => {
                     src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`} alt='Pokemon Image' />
 
 
-                {location.pathname !== "/" ?
+                {location.pathname === "/" ?
                     <Button
                         w={"146px"}
                         marginTop={"auto"}
                         marginBottom={"12px"}
                         color={"#000000"}
                         bgColor={"#ffffff"}
+                        onClick={()=>handleChangePokedex(pokemonName,"add")}
                     > Capturar!</Button> :
                     <Button
                         w={"146px"}
@@ -111,6 +128,7 @@ const Card = ({ pokemonName }) => {
                         marginBottom={"12px"}
                         color={"#ffffff"}
                         bgColor={"#FF6262"}
+                        onClick={()=>handleChangePokedex(pokemonName,"remove")}
                     > Excluir</Button>
                 }
 
@@ -119,6 +137,7 @@ const Card = ({ pokemonName }) => {
 
 
         </Flex>
+        </Skeleton >
     )
 }
 

@@ -1,14 +1,23 @@
 import { Button, Flex, Image, Link, Text } from '@chakra-ui/react'
 import pokemonLogo from "../../assets/pokemon-logo.svg"
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import { ChevronLeftIcon } from '@chakra-ui/icons'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import { goToHomePage, goToPokedex } from '../../routes/coordinator'
+import { GlobalContext } from '../../contexts/GlobalContext'
 
 const Header = () => {
     const location = useLocation()
     const params = useParams()
     const navigate = useNavigate()
+    const context = useContext(GlobalContext)
+
+    useEffect(()=>{
+        context.fromLocalStorage()
+    },[])
+
+
+
     const buttonSwitch = () => {
         switch (location.pathname) {
             case "/":

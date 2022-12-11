@@ -5,13 +5,17 @@ import { Link, useLocation, useParams } from 'react-router-dom'
 import Layout from '../../components/Layout/Layout'
 import { BASE_URL } from '../../constants/BASE_URL'
 import pokeBola from "../../assets/pokebola2.svg"
+import { typePokemon } from '../../constants/type'
+
 
 const DeatailsPage = () => {
   const params = useParams()
   const [isLoading, setIsLoading] = useState(false)
   const [pokemon, setPokemon] = useState({})
   const [moves, setMoves] = useState([])
-  const location = useLocation()
+  const [type1, setType1] = useState({})
+  const [type2, setType2] = useState({})
+  const pokemonName = params.pokemonName
   useEffect(() => {
     fetchPokemonByName()
   }, [])
@@ -19,16 +23,23 @@ const DeatailsPage = () => {
 
   const fetchPokemonByName = async () => {
     try {
-      setIsLoading(true)
-      const response = await axios.get(`${BASE_URL}/pokemon/${params.pokemonName}`)
-      setPokemon(response.data)
-      setIsLoading(false)
+        setIsLoading(true)
+        const response = await axios.get(`${BASE_URL}/pokemon/${pokemonName}`)
+        setPokemon(response.data)
+        if (response.data.types[0].type.name) {
+            setType1(typePokemon[response.data.types[0].type.name])
+            if (response.data.types[1].type.name) {
+              setType2(typePokemon[response.data.types[1].type.name])
+              }
+        }
+        
+        setIsLoading(false)
 
     } catch (error) {
-      setIsLoading(false)
-      console.log(error);
+        setIsLoading(false)
+        console.log(error);
     }
-  }
+}
 
 
 
@@ -48,7 +59,7 @@ const DeatailsPage = () => {
         w={"100%"}
         h={"664px"}
         borderRadius={"38px"}
-        bgColor={"#70B873"}
+        bgColor={type1.color && type1.color}
         marginTop={"36px"}
       >
         <Flex padding={"26px 44px"}>
@@ -140,11 +151,15 @@ const DeatailsPage = () => {
               </Stack>
             </Skeleton>
             <Skeleton isLoaded={!isLoading}>
-              <Flex paddingTop={"8px"} gap={"8px"}>
-                <Image src={"../type/grassLabel.svg"} alt='Shield first attribute' />
-                {
-                  <Image src={"../type/poisonLabel.svg"} alt='Shield second attribute' />
+              <Flex paddingTop={"8px"} gap={"16px"}>
+              {pokemon.types &&
+                <>
+                <Image src={`../type/${pokemon.types[0].type.name}Label.svg` } alt='Shield first attribute' />
+                {pokemon.types[1] &&
+                  <Image src={`../type/${pokemon.types[1].type.name}Label.svg`} alt='Shield second attribute' />
                 }
+                </>}
+                
               </Flex>
             </Skeleton>
             <Image
