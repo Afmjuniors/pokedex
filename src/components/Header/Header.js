@@ -22,39 +22,9 @@ const Header = () => {
 
 
     const buttonSwitch = () => {
-        switch (location.pathname) {
-            case "/":
-                return (
-                    <Button
-                        bgColor={"#33A4F5"}
-                        color={"#FFFFFF"}
-                        fontSize={"24px"}
-                        padding={"36px 92px"}
-                        marginRight={"40px"}
-                        marginLeft={"auto"}
-                        _hover={{
-                            bgColor: "#33A4F5"
-                        }}
-                        onClick={()=>goToPokedex(navigate)}
-
-                    >Pokêdex</Button>
-                )
-                case `/${params.page}`:
-                return (
-                    <Button
-                        bgColor={"#33A4F5"}
-                        color={"#FFFFFF"}
-                        fontSize={"24px"}
-                        padding={"36px 92px"}
-                        marginRight={"40px"}
-                        marginLeft={"auto"}
-                        _hover={{
-                            bgColor: "#33A4F5"
-                        }}
-                        onClick={()=>goToPokedex(navigate)}
-
-                    >Pokêdex</Button>
-                )
+        switch (location.pathname) {   
+            case "/pokedex":
+                return <></>            
             case `/pokemon/${params.pokemonName}`:
                 return (
                     <>
@@ -94,6 +64,22 @@ const Header = () => {
                     } 
                     </>                 
                 )
+                default:
+                    return (
+                        <Button
+                            bgColor={"#33A4F5"}
+                            color={"#FFFFFF"}
+                            fontSize={"24px"}
+                            padding={"36px 92px"}
+                            marginRight={"40px"}
+                            marginLeft={"auto"}
+                            _hover={{
+                                bgColor: "#33A4F5"
+                            }}
+                            onClick={()=>goToPokedex(navigate)}
+    
+                        >Pokêdex</Button>
+                    )
         }
     }
 
@@ -108,7 +94,7 @@ const Header = () => {
 
             {
                 (location.pathname !== "/" &&
-                location.pathname !== `/${params.page}`) &&
+                location.pathname !== `/page/${params.page}`) &&
                 <Flex alignItems={"center"}
                     paddingLeft={"84px"}
                 >
@@ -122,11 +108,10 @@ const Header = () => {
                     >Todos Pokémons</Link>
                 </Flex>
             }
-
-
             <Image
-                position={"absolute"}
-                right={"40%"}
+            position={"absolute"}
+            left={"40vw"}
+               
                 src={pokemonLogo} alt='Pokeon logo' />
             {buttonSwitch()}
 
@@ -146,18 +131,13 @@ const Header = () => {
                      O Pokémon foi adicionado a sua Pokédex
                      </Text>
                 </>:
-                 <>
-                 
+                 <>                 
                  <Heading>Oh, no!</Heading>            
                  <Text fontWeight={"bold"}>
-                 O Pokémon foi removido da sua Pokedéx
-                 
+                 O Pokémon foi removido da sua Pokedéx                 
                  </Text>
             </>
-
-
-                }
-           
+                }           
             </Flex>
           </ModalContent>
         </Modal>

@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { Button, Flex, Heading, Image, Link, Modal, ModalContent, ModalOverlay, ScaleFade, Skeleton, Stack, Text, useDisclosure, } from '@chakra-ui/react'
+import { Button, Flex, Heading, Image, Link, Modal, ModalContent, ModalOverlay, ScaleFade, Skeleton, Spinner, Stack, Text, useDisclosure, } from '@chakra-ui/react'
 import pokeBola from "../../assets/pokebola.png"
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import { goToDeatails } from '../../routes/coordinator'
@@ -11,14 +11,12 @@ import ModalPokemon from '../modal/ModalPokemon'
 
 const Card = ({ pokemonName }) => {
     // const {isOpen, onOpen, onClose} = useDisclosure()
-    
+
     const context = useContext(GlobalContext)
     const { pokedex,
         handleChangePokedex,
         setIsOpen,
-        isOpen,
-        flow,
-        setFlow
+        setFlow,     
     } = context
     const location = useLocation()
     const params = useParams()
@@ -28,7 +26,7 @@ const Card = ({ pokemonName }) => {
     const [type2, setType2] = useState({})
     const [isLoading, setIsLoading] = useState(false)
 
-console.log();
+    console.log();
     useEffect(() => {
         fetchPokemonByName()
     }, [])
@@ -40,14 +38,13 @@ console.log();
             setIsLoading(true)
             const response = await axios.get(`${BASE_URL}/pokemon/${pokemonName}`)
             setPokemon(response.data)
-            if (response.data.types[0]) {
+            if (response.data.types[0].type.name) {
                 setType1(typePokemon[response.data.types[0].type.name])
-            }
-            if (response.data.types[1]) {
-                setType2(typePokemon[response.data.types[1].type.name])
-            }
-            setIsLoading(false)
-
+                if (response.data.types[1].type.name) {
+                  setType2(typePokemon[response.data.types[1].type.name])
+                  }
+            }            
+            setIsLoading(false)    
         } catch (error) {
             setIsLoading(false)
             console.log(error);
@@ -58,98 +55,105 @@ console.log();
 
 
     return (
-       
+
         <>
-        <ScaleFade initialScale={0.8} in={true}>
-            <Flex
-                bgImage={pokeBola}
-                bgRepeat={"no-repeat"}
-                bgPosition={"right"}
-                w={"440px"}
-                h={"210px"}
-                borderRadius={"12px"}
-                bgColor={type1 && type1.color}
-                marginTop={"36px"}
-            >
-                <Flex padding={"24px 0 24px 24px"}
-                    flexDirection={"column"}>
-                    <Skeleton isLoaded={!isLoading}>
-                        <Stack color={"#ffffff"}>
-                            <Text fontSize={"16px"} fontWeight={"bold"} marginBottom={"-16px"}>#{pokemon.id < 100 ? pokemon.id < 10 ? `00${pokemon.id}` : `0${pokemon.id}` : pokemon.id}</Text>
-                            <Heading textTransform={"capitalize"} fontSize={"32px"}>{pokemon.name}</Heading>
-                        </Stack>
-                    </Skeleton>
-                    <Skeleton isLoaded={!isLoading}>
-
-                        <Flex paddingTop={"8px"} gap={"8px"}>
-                            {pokemon.types &&
-                                <>
-                                    <Image src={`./type/${pokemon.types[0].type.name}Label.svg`} alt='Shield first attribute' />
-                                    {pokemon.types[1] &&
-                                    <Image src={`./type/${pokemon.types[1].type.name}Label.svg`} alt='Shield second attribute' />
-                                    }
-                                </>}
-
-                        </Flex>
-                    </Skeleton>
-                    <Link
-                        fontSize={"16px"}
-                        fontWeight={"bold"}
-                        textDecoration={"underline"}
-                        color={"#ffffff"}
-                        marginTop={"auto"}
-                        onClick={() => goToDeatails(navigate, pokemonName)}
-                    >Detalhes</Link>
-                </Flex>
-
+            <ScaleFade initialScale={0.8} in={true}>
                 <Flex
-                    w={"220px"}
-                    position={"relative"}
-                    justifyContent={"center"}
-                >
-                    <Image
-                        position={"absolute"}
-                        w={"193px"}
-                        h={"193px"}
-                        bottom={"70px"}
-                        right={"12px"}
-                        src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`} alt='Pokemon Image' />
+                    bgImage={pokeBola}
+                    bgRepeat={"no-repeat"}
+                    bgPosition={"right"}
+                    w={"440px"}
+                    h={"210px"}
+                    borderRadius={"12px"}
+                    bgColor={type1 && type1.color}
+                    marginTop={"36px"}
+                    justifyContent={isLoading?"center":"space-between"}
+                >{isLoading?<Spinner alignSelf={"center"} justifySelf={"center"} color={"white"} size={"xl"}/>:
+                <>
+                <Flex padding={"24px 0 24px 24px"}
+                        flexDirection={"column"}>
+                        <Skeleton isLoaded={!isLoading}>
+                            <Stack color={"#ffffff"}>
+                                <Text fontSize={"16px"} fontWeight={"bold"} marginBottom={"-16px"}>#{pokemon.id < 100 ? pokemon.id < 10 ? `00${pokemon.id}` : `0${pokemon.id}` : pokemon.id}</Text>
+                                <Heading textTransform={"capitalize"} fontSize={"32px"}>{pokemon.name}</Heading>
+                            </Stack>
+                        </Skeleton>
+                        <Skeleton isLoaded={!isLoading}>
 
-                    {location.pathname === "/" || location.pathname ==="/"+params.page?
-                        <Button
-                            w={"146px"}
-                            marginTop={"auto"}
-                            marginBottom={"12px"}
-                            color={"#000000"}
-                            bgColor={"#ffffff"}
-                            onClick={() => {
-                                setFlow(1)
-                                handleChangePokedex(pokemonName, "add")
-                                if (!pokedex.includes(pokemonName)) {   
-                                    setIsOpen(true)                                
-                                }}}
-                        > Capturar!</Button> :
-                        <Button
-                            w={"146px"}
-                            marginTop={"auto"}
-                            marginBottom={"12px"}
+                            <Flex paddingTop={"8px"} gap={"8px"}>
+                                {pokemon.types &&
+                                    <>
+                                        <Image src={`../type/${pokemon.types[0].type.name}Label.svg`} alt='Shield first attribute' />
+                                        {pokemon.types[1] &&
+                                            <Image src={`../type/${pokemon.types[1].type.name}Label.svg`} alt='Shield second attribute' />
+                                        }
+                                    </>}
+
+                            </Flex>
+                        </Skeleton>
+                        <Link
+                            fontSize={"16px"}
+                            fontWeight={"bold"}
+                            textDecoration={"underline"}
                             color={"#ffffff"}
-                            bgColor={"#FF6262"}
-                            onClick={() => {
-                                setFlow(2)
-                                handleChangePokedex(pokemonName, "remove") 
-                                setIsOpen(true)                         
-                         }}
-                        > Excluir</Button>
-                    }
-                      
+                            marginTop={"auto"}
+                            onClick={() => goToDeatails(navigate, pokemonName)}
+                        >Detalhes</Link>
+                    </Flex>
+
+                    <Flex
+                        w={"220px"}
+                        position={"relative"}
+                        justifyContent={"center"}
+                    >
+                        <Image
+                            position={"absolute"}
+                            w={"193px"}
+                            h={"193px"}
+                            bottom={"70px"}
+                            right={"12px"}
+                            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`} alt='Pokemon Image' />
+
+                        {location.pathname === "/" || location.pathname === "/page/" + params.page ?
+                            <Button
+                                w={"146px"}
+                                marginTop={"auto"}
+                                marginBottom={"12px"}
+                                color={"#000000"}
+                                bgColor={"#ffffff"}
+                                onClick={() => {
+                                    setFlow(1)
+                                    handleChangePokedex(pokemonName, "add")
+                                    if (!pokedex.includes(pokemonName)) {
+                                        setIsOpen(true)
+                                    }
+                                }}
+                            > Capturar!</Button> :
+                            <Button
+                                w={"146px"}
+                                marginTop={"auto"}
+                                marginBottom={"12px"}
+                                color={"#ffffff"}
+                                bgColor={"#FF6262"}
+                                onClick={() => {
+                                    setFlow(2)
+                                    handleChangePokedex(pokemonName, "remove")
+                                    setIsOpen(true)
+                                }}
+                            > Excluir</Button>
+                        }
+
+                    </Flex>
+                </>
+
+                }
+                    
                 </Flex>
-            </Flex>
-           
 
 
-</ScaleFade>
-                     </>
+
+            </ScaleFade>
+        </>
 
     )
 }
