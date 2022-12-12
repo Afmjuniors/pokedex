@@ -30,23 +30,23 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/Afmjuniors/repo_name">
+  <a href="https://github.com/Afmjuniors/projeto-react-apis">
     <img src="readme-image/logo-doc.png" alt="Logo" width="80" height="80">
   </a>
 
-<h3 align="center">project_title</h3>
+<h3 align="center">Pokedex Labenu</h3>
 
   <p align="center">
-    project_description
+    A website with pokemons to capture in your own pokedex
     <br />
-    <a href="https://github.com/Afmjuniors/repo_name"><strong>Explore the docs »</strong></a>
+    <a href="https://projeto-react-apis.vercel.app/"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/Afmjuniors/repo_name">View Demo</a>
+    <a href="https://github.com/Afmjuniors/projeto-react-apis">View Demo</a>
     ·
-    <a href="https://github.com/Afmjuniors/repo_name/issues">Report Bug</a>
+    <a href="https://github.com/Afmjuniors/projeto-react-apis/issues">Report Bug</a>
     ·
-    <a href="https://github.com/Afmjuniors/repo_name/issues">Request Feature</a>
+    <a href="https://github.com/Afmjuniors/projeto-react-apis/issues">Request Feature</a>
   </p>
 </div>
 
@@ -61,6 +61,7 @@
       <ul>
         <li><a href="#built-with">Built With</a></li>
       </ul>
+	      <li> <a href='#deployment'>Deployment</a></li>
     </li>
     <li>
       <a href="#getting-started">Getting Started</a>
@@ -75,6 +76,7 @@
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#acknowledgments">Acknowledgments</a></li>
+	<li><a href="#projetoLabenu">BootCamp´s task</a></li>
   </ol>
 </details>
 
@@ -85,7 +87,7 @@
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
-Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `Afmjuniors`, `repo_name`, `twitter_handle`, `linkedin_username`, `email_client`, `email`, `project_title`, `project_description`
+Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following:  `Pokedex Labenu`, `A website with pokemons to capture in your own pokedex`
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -93,18 +95,17 @@ Here's a blank template to get started: To avoid retyping too much info. Do a se
 
 ### Built With
 
-* [![Next][Next.js]][Next-url]
 * [![React][React.js]][React-url]
-* [![Vue][Vue.js]][Vue-url]
-* [![Angular][Angular.io]][Angular-url]
-* [![Svelte][Svelte.dev]][Svelte-url]
-* [![Laravel][Laravel.com]][Laravel-url]
-* [![Bootstrap][Bootstrap.com]][Bootstrap-url]
-* [![JQuery][JQuery.com]][JQuery-url]
+* [![Styled-components]][Styled-url]
+* [![Chakra-UI]][Chakra-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
+### Deployment
+
+Versel:
+https://projeto-react-apis.vercel.app/
 
 <!-- GETTING STARTED -->
 ## Getting Started
@@ -114,7 +115,6 @@ To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
 * npm
   ```sh
   npm install npm@latest -g
@@ -122,19 +122,15 @@ This is an example of how to list things you need to use the software and how to
 
 ### Installation
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+1. Clone the repo
    ```sh
-   git clone https://github.com/Afmjuniors/repo_name.git
+   git clone https://github.com/Afmjuniors/projeto-frontendreact.git
    ```
-3. Install NPM packages
+2. Install NPM packages
    ```sh
    npm install
    ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
-   ```
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -143,9 +139,8 @@ This is an example of how to list things you need to use the software and how to
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+A website where the user can get pokemons for their own Pokedex. Also its possible to view detail information about the pokemon of your choosing.
 
-_For more examples, please refer to the [Documentation](https://example.com)_
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -154,50 +149,31 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 <!-- ROADMAP -->
 ## Roadmap
 
-- [ ] Feature 1
-- [ ] Feature 2
-- [ ] Feature 3
-    - [ ] Nested Feature
+-  HomePage
+	* Display all pokemon from API, using pages to go trought them. 
+-  Pokedex
+	* Disply in a card format all pokemon in your personal pokedex.
+- Pokemon details
+    * Deatail information about selected pokemon
 
-See the [open issues](https://github.com/Afmjuniors/repo_name/issues) for a full list of proposed features (and known issues).
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- CONTRIBUTING -->
-## Contributing
-
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
-
-If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
-Don't forget to give the project a star! Thanks again!
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+See the [open issues](https://github.com/Afmjuniors/projeto-react-apis/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 
-<!-- LICENSE -->
-## License
 
-Distributed under the MIT License. See `LICENSE.txt` for more information.
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 
 
 
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com
+Alexandre Machado  - afmjuniors@gmail.com
 
-Project Link: [https://github.com/Afmjuniors/repo_name](https://github.com/Afmjuniors/repo_name)
+Project Link: [https://github.com/Afmjuniors/projeto-react-apis](https://github.com/Afmjuniors/projeto-react-apis)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -208,7 +184,7 @@ Project Link: [https://github.com/Afmjuniors/repo_name](https://github.com/Afmju
 
 * [Figma´s template](https://www.figma.com/file/KseyA2Ofghiek2Cy3ZaDre/Poked%C3%A9x?node-id=0%3A1&t=0Ecay1N7WE5TS0rc-0)
 * [PokeApi - API](https://pokeapi.co/)
-* []()
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -216,18 +192,18 @@ Project Link: [https://github.com/Afmjuniors/repo_name](https://github.com/Afmju
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/Afmjuniors/repo_name.svg?style=for-the-badge
-[contributors-url]: https://github.com/Afmjuniors/repo_name/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/Afmjuniors/repo_name.svg?style=for-the-badge
-[forks-url]: https://github.com/Afmjuniors/repo_name/network/members
-[stars-shield]: https://img.shields.io/github/stars/Afmjuniors/repo_name.svg?style=for-the-badge
-[stars-url]: https://github.com/Afmjuniors/repo_name/stargazers
-[issues-shield]: https://img.shields.io/github/issues/Afmjuniors/repo_name.svg?style=for-the-badge
-[issues-url]: https://github.com/Afmjuniors/repo_name/issues
-[license-shield]: https://img.shields.io/github/license/Afmjuniors/repo_name.svg?style=for-the-badge
-[license-url]: https://github.com/Afmjuniors/repo_name/blob/master/LICENSE.txt
+[contributors-shield]: https://img.shields.io/github/contributors/Afmjuniors/projeto-react-apis.svg?style=for-the-badge
+[contributors-url]: https://github.com/Afmjuniors/projeto-react-apis/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/Afmjuniors/projeto-react-apis.svg?style=for-the-badge
+[forks-url]: https://github.com/Afmjuniors/projeto-react-apis/network/members
+[stars-shield]: https://img.shields.io/github/stars/Afmjuniors/projeto-react-apis.svg?style=for-the-badge
+[stars-url]: https://github.com/Afmjuniors/projeto-react-apis/stargazers
+[issues-shield]: https://img.shields.io/github/issues/Afmjuniors/projeto-react-apis.svg?style=for-the-badge
+[issues-url]: https://github.com/Afmjuniors/projeto-react-apis/issues
+[license-shield]: https://img.shields.io/github/license/Afmjuniors/projeto-react-apis.svg?style=for-the-badge
+[license-url]: https://github.com/Afmjuniors/projeto-react-apis/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/linkedin_username
+[linkedin-url]: https://linkedin.com/in/afmjuniors
 [product-screenshot]: readme-image/screenshot.gif
 [Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
 [Next-url]: https://nextjs.org/
@@ -244,11 +220,16 @@ Project Link: [https://github.com/Afmjuniors/repo_name](https://github.com/Afmju
 [Bootstrap.com]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
 [Bootstrap-url]: https://getbootstrap.com
 [JQuery.com]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
-[JQuery-url]: https://jquery.com 
+[JQuery-url]: https://jquery.com
+[Styled-components]:https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white
+[Styled-url]: https://www.styled-components.com/
+[Chakra-UI]: https://img.shields.io/static/v1?style=for-the-badge&message=Chakra+UI&color=319795&logo=Chakra+UI&logoColor=FFFFFF&label=
+[Chakra-url]: https://chakra-ui.com/getting-started
 
 
 
 
+<h1 id="projetoLabenu"></h1>
 
 # **Projeto React e API's**
 O Projeto React e APIs é um site de pokémons que possui três páginas: Home, Pokedex e Detalhes. O projeto está subdivido em temas de acordo com os conteúdos que estudado durante o Módulo 2 - Frontend.
