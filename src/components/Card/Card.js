@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { Button, Flex, Heading, Image, Link, Modal, ModalContent, ModalOverlay, ScaleFade, Skeleton, Stack, Text, useDisclosure, } from '@chakra-ui/react'
 import pokeBola from "../../assets/pokebola.png"
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import { goToDeatails } from '../../routes/coordinator'
 import axios from 'axios'
 import { BASE_URL } from '../../constants/BASE_URL'
@@ -21,13 +21,14 @@ const Card = ({ pokemonName }) => {
         setFlow
     } = context
     const location = useLocation()
+    const params = useParams()
     const navigate = useNavigate()
     const [pokemon, setPokemon] = useState({})
     const [type1, setType1] = useState({})
     const [type2, setType2] = useState({})
     const [isLoading, setIsLoading] = useState(false)
 
-
+console.log();
     useEffect(() => {
         fetchPokemonByName()
     }, [])
@@ -57,6 +58,7 @@ const Card = ({ pokemonName }) => {
 
 
     return (
+       
         <>
         <ScaleFade initialScale={0.8} in={true}>
             <Flex
@@ -113,7 +115,7 @@ const Card = ({ pokemonName }) => {
                         right={"12px"}
                         src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`} alt='Pokemon Image' />
 
-                    {location.pathname === "/" ?
+                    {location.pathname === "/" || location.pathname ==="/"+params.page?
                         <Button
                             w={"146px"}
                             marginTop={"auto"}
