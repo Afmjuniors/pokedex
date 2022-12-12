@@ -22,14 +22,14 @@ const PokedexPage = () => {
 
   return (
     <Layout>
-      <Heading color={"#ffffff"}>Todos os Pokémons</Heading>
+      <Heading color={"#ffffff"}>Meus Pokémons</Heading>
       <Flex marginTop={"20px"} gap={"20px"} flexWrap={"wrap"}>
-        {isLoading ||
-        context.pokedex.map((pokemon)=>
+        
+        {context.pokedex.map((pokemon)=>
        ( <Skeleton key={pokemon} isLoaded={!isLoading}>
          <Card  pokemonName={pokemon} />
          </Skeleton>
-         ))}  
+         ))}
       </Flex>
     </Layout>
   )
