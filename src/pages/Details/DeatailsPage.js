@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Grid, GridItem, Heading, Image, Progress, Skeleton, Stack, Text } from '@chakra-ui/react'
+import { Box, Button, Collapse, Flex, Grid, GridItem, Heading, Image, Progress, ScaleFade, Skeleton, Stack, Text } from '@chakra-ui/react'
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Link, useLocation, useParams } from 'react-router-dom'
@@ -6,9 +6,12 @@ import Layout from '../../components/Layout/Layout'
 import { BASE_URL } from '../../constants/BASE_URL'
 import pokeBola from "../../assets/pokebola2.svg"
 import { typePokemon } from '../../constants/type'
+import styled from 'styled-components'
 
 
-const DeatailsPage = () => {
+
+
+const DeatailsPage = ({isOpen=true}) => {
   const params = useParams()
   const [isLoading, setIsLoading] = useState(false)
   const [pokemon, setPokemon] = useState({})
@@ -47,11 +50,13 @@ const DeatailsPage = () => {
 
   return (
     <Layout>
+        
       <Heading color={"#ffffff"}>Deatalhes</Heading>
+      
 
-
-
+      <ScaleFade initialScale={0.9} in={true}>
       <Flex
+        
         position={"relative"}
         bgImage={pokeBola}
         bgRepeat={"no-repeat"}
@@ -205,22 +210,11 @@ const DeatailsPage = () => {
                
               }
               </Flex>
-
             </Flex>
-
-
-
-
           </Flex>
-
-
-
-
-
-
-
         </Flex>
       </Flex>
+      </ScaleFade>
     </Layout>
   )
 
