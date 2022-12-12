@@ -1,62 +1,32 @@
-import { Box, Button, Collapse, Flex, Grid, GridItem, Heading, Image, Progress, ScaleFade, Skeleton, Stack, Text } from '@chakra-ui/react'
-import axios from 'axios'
-import React, { useEffect, useState } from 'react'
-import { Link, useLocation, useParams } from 'react-router-dom'
+import { Box, Flex, Heading, Image, Progress, ScaleFade, Skeleton, Stack, Text } from '@chakra-ui/react'
+import React, { useContext, useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
 import Layout from '../../components/Layout/Layout'
-import { BASE_URL } from '../../constants/BASE_URL'
 import pokeBola from "../../assets/pokebola2.svg"
-import { typePokemon } from '../../constants/type'
-import styled from 'styled-components'
+import { GlobalContext } from '../../contexts/GlobalContext'
+import { goToDeatails } from '../../routes/coordinator'
 
 
 
 
-const DeatailsPage = ({isOpen=true}) => {
+const DeatailsPage = () => {
   const params = useParams()
-  const [isLoading, setIsLoading] = useState(false)
-  const [pokemon, setPokemon] = useState({})
-  const [moves, setMoves] = useState([])
-  const [type1, setType1] = useState({})
-  const [type2, setType2] = useState({})
+  const {fetchPokemonByName,
+     isLoading, 
+     type1,    
+     pokemon 
+     } = useContext(GlobalContext)
   const pokemonName = params.pokemonName
   useEffect(() => {
-    fetchPokemonByName()
+    fetchPokemonByName(pokemonName)
+    
   }, [])
 
-
-  const fetchPokemonByName = async () => {
-    try {
-        setIsLoading(true)
-        const response = await axios.get(`${BASE_URL}/pokemon/${pokemonName}`)
-        setPokemon(response.data)
-        if (response.data.types[0].type.name) {
-            setType1(typePokemon[response.data.types[0].type.name])
-            if (response.data.types[1].type.name) {
-              setType2(typePokemon[response.data.types[1].type.name])
-              }
-        }
-        
-        setIsLoading(false)
-
-    } catch (error) {
-        setIsLoading(false)
-        console.log(error);
-    }
-}
-
-
-
-
-
   return (
-    <Layout>
-        
-      <Heading color={"#ffffff"}>Deatalhes</Heading>
-      
-
+    <Layout>        
+      <Heading color={"#ffffff"}>Deatalhes</Heading>     
       <ScaleFade initialScale={0.9} in={true}>
-      <Flex
-        
+      <Flex        
         position={"relative"}
         bgImage={pokeBola}
         bgRepeat={"no-repeat"}
@@ -68,7 +38,6 @@ const DeatailsPage = ({isOpen=true}) => {
         marginTop={"36px"}
       >
         <Flex padding={"26px 44px"}>
-
           <Box>
             <Box bgColor={"#ffffff"}
               borderRadius={"8px"}
@@ -76,13 +45,17 @@ const DeatailsPage = ({isOpen=true}) => {
               h={"282px"}
               display={"flex"}
             ><Image src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`} alt='sprite front default' /> </Box>
+           {pokemon.sprites && pokemon.sprites.back_default &&
             <Box bgColor={"#ffffff"}
               display={"flex"}
               borderRadius={"8px"}
               marginTop={"48px;"}
               w={"282px"}
-              h={"282px"}
-            ><Image src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/${pokemon.id}.png`} alt='sprite back default' /> </Box>
+              h={"282px"}              
+            >              
+              <Image src={ `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/${pokemon.id}.png`} alt='sprite back default' />              
+               </Box>
+              }
           </Box>
           <Box w={"343px"}
             h={"100%"}
@@ -114,22 +87,18 @@ const DeatailsPage = ({isOpen=true}) => {
                           margin={"auto"}
                         >{stat.base_stat}</Text>
                       </Flex>
-
                       <Progress w={"200px"}
                         borderRadius={"4px"}
                         bgColor={"#ffffff"}
                         colorScheme={stat.base_stat < 50 ? "orange" : stat.base_stat < 80 ? "yellow" : "green"} value={(stat.base_stat + 10)} />
-
                     </Flex>
                   )
                 })}
-              {
-                pokemon.stats &&
+              {pokemon.stats &&
                 <Flex
                   borderBottom={"1px grey solid"}
                   h={"28px"}
                   alignItems={"center"}
-
                 >
                   <Text
                     w={"60px"}
@@ -144,7 +113,6 @@ const DeatailsPage = ({isOpen=true}) => {
               }
             </Flex>
           </Box>
-
           <Flex
             flexDirection={"column"}
             w={"292px"}
@@ -195,7 +163,7 @@ const DeatailsPage = ({isOpen=true}) => {
               {
                 pokemon.moves &&
               
-                pokemon.moves.filter((mv,i)=> i < 7)
+                pokemon.moves.filter((mv,i)=> i < 6)
                 .map((move)=><Text 
                 key={move.move.name}
                 textTransform={"capitalize"}

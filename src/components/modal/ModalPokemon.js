@@ -38,10 +38,6 @@ const ModalPokemon = () => {
            )
         }
     }
-
-
-
-
         return (
             <>
                 <Modal isOpen={isOpen} onClose={()=>setIsOpen(false)}>
