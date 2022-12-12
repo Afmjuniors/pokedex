@@ -1,15 +1,15 @@
 export const typePokemon = {
     poison:{
         ulrImg:"./type/poisonLabel.svg",
-        color:"#AD61AE"
+        color:"#A15AB1"
     },
     grass:{
         urlImg:"./type/grassLabel.svg",
-        color:"#70B873"
+        color:"#729F92"
     },
     fire:{
         urlImg:"./type/fireLabel.svg",
-        color:"#F44900"
+        color:"#EAAB7D"
     },
     flying:{
         urlImg:"./type/flyingLabel.svg",
@@ -17,58 +17,58 @@ export const typePokemon = {
     },
     water:{
         urlImg:"./type/waterLabel.svg",
-        color:"#33A4F5"
+        color:"#71C3FF"
     },
     bug:{
         urlImg:"./type/bugLabel.svg",
-        color:"#316520"
+        color:"#76A866"
     },
     normal:{
         urlImg:"./type/grassLabel.svg",
-        color:"#5C5365"
+        color:"#BF9762"
     },
     dark:{
         urlImg:"./type/grassLabel.svg",
-        color:"#5C5365"
+        color:"#5E4C4C"
     },
     dragon:{
         urlImg:"./type/dragonLabel.svg",
-        color:"#F4D23B"
+        color:"#004170"
     },
     electric:{
         urlImg:"./type/electricLabel.svg",
-        color:"#F4D23B"
+        color:"#FAD33E"
     },
     fairy:{
         urlImg:"./type/fairyLabel.svg",
-        color:"#EC8FE6"
+        color:"#F9A8EF"
     },
     fighting:{
         urlImg:"./type/fightingLabel.svg",
-        color:"#CE4069"
+        color:"#9B4840"
     },
     ghost:{
         urlImg:"./type/ghostLabel.svg",
-        color:"#5269AC"
+        color:"#7D66AE"
     },
     ground:{
         urlImg:"./type/groundLabel.svg",
-        color:"#D97745"
+        color:"#C8AB63"
     },
     ice:{
         urlImg:"./type/iceLabel.svg",
-        color:"#F67176"
+        color:"#94E3F1"
     },
-    pshychic:{
-        urlImg:"./type/pshychicLabel.svg",
-        color:"#F67176"
+    psychic:{
+        urlImg:"./type/psychicLabel.svg",
+        color:"#F5779E"
     },
     rock:{
         urlImg:"./type/rockLabel.svg",
-        color:"#C7B78B"
+        color:"#A8865D"
     },
     steel:{
         urlImg:"./type/steelLabel.svg",
-        color:"#BBBBBB"
+        color:"#ABA9BE"
     }
 }

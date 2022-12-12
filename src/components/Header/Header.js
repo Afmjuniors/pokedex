@@ -39,6 +39,22 @@ const Header = () => {
 
                     >Pokêdex</Button>
                 )
+                case `/${params.page}`:
+                return (
+                    <Button
+                        bgColor={"#33A4F5"}
+                        color={"#FFFFFF"}
+                        fontSize={"24px"}
+                        padding={"36px 92px"}
+                        marginRight={"40px"}
+                        marginLeft={"auto"}
+                        _hover={{
+                            bgColor: "#33A4F5"
+                        }}
+                        onClick={()=>goToPokedex(navigate)}
+
+                    >Pokêdex</Button>
+                )
             case `/pokemon/${params.pokemonName}`:
                 return (
                     <>
@@ -91,7 +107,8 @@ const Header = () => {
         >
 
             {
-                location.pathname !== "/" &&
+                (location.pathname !== "/" &&
+                location.pathname !== `/${params.page}`) &&
                 <Flex alignItems={"center"}
                     paddingLeft={"84px"}
                 >

@@ -5,7 +5,7 @@ import Card from '../../components/Card/Card'
 import axios from 'axios'
 import { BASE_URL } from '../../constants/BASE_URL'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
-import { goToHomePage } from '../../routes/coordinator'
+import { goToHomePage, goToHomeTurnPage } from '../../routes/coordinator'
 import { GlobalContext } from '../../contexts/GlobalContext'
 import ModalPokemon from '../../components/modal/ModalPokemon'
 
@@ -19,22 +19,35 @@ const HomePage = () => {
   const [perPage, setPerPage] = useState(21)
   const [lastPage, setLastPage] = useState(1)
   const [pageNumber, setPageNumber] = useState(1)
-  const navigate = useNavigate()  
+  const navigate = useNavigate() 
+  const params = useParams() 
 
 
   const handlePageTurn = (value) => {
     if(value===0){
       setPageNumber(1)
       setNumbMin(0)
+    goToHomeTurnPage(navigate,1)      
     }else if(value===lastPage){
     setPageNumber(lastPage)
     setNumbMin((lastPage-1) * perPage)
+    goToHomeTurnPage(navigate,lastPage)
     }else{
     setPageNumber((pageNumber+value))
     setNumbMin(((pageNumber+value)-1) * perPage)
+    goToHomeTurnPage(navigate,pageNumber+value)
     }
+   
   }
-  
+
+  useEffect(()=>{
+    if(params.page)
+    {
+      setNumbMin(Number(params.page) * perPage)
+      setPageNumber(Number(params.page))
+
+    }
+  },[])
 
   useEffect(() => {
     fetchPokemons()
@@ -69,7 +82,7 @@ const HomePage = () => {
         
        
       </Flex>
-      
+
       <ButtonGroup marginTop={"32px"}>
         {
           pageNumber !== 1 &&        
