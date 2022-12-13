@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { Button, Flex, Heading, Image, Link, Modal, ModalContent, ModalOverlay, ScaleFade, Skeleton, Spinner, Stack, Text, useDisclosure, } from '@chakra-ui/react'
+import { Button, Flex, Heading, Image, Link, ScaleFade, Skeleton, Spinner, Stack, Text, } from '@chakra-ui/react'
 import pokeBola from "../../assets/pokebola.png"
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import { goToDeatails } from '../../routes/coordinator'
@@ -7,10 +7,8 @@ import axios from 'axios'
 import { BASE_URL } from '../../constants/BASE_URL'
 import { typePokemon } from "../../constants/type";
 import { GlobalContext } from '../../contexts/GlobalContext'
-import ModalPokemon from '../modal/ModalPokemon'
 
 const Card = ({ pokemonName }) => {
-    // const {isOpen, onOpen, onClose} = useDisclosure()
 
     const context = useContext(GlobalContext)
     const { pokedex,
@@ -31,8 +29,6 @@ const Card = ({ pokemonName }) => {
         fetchPokemonByName()
     }, [])
 
-
-
     const fetchPokemonByName = async () => {
         try {
             setIsLoading(true)
@@ -50,9 +46,6 @@ const Card = ({ pokemonName }) => {
             console.log(error);
         }
     }
-
-
-
 
     return (
 
@@ -79,7 +72,6 @@ const Card = ({ pokemonName }) => {
                             </Stack>
                         </Skeleton>
                         <Skeleton isLoaded={!isLoading}>
-
                             <Flex paddingTop={"8px"} gap={"8px"}>
                                 {pokemon.types &&
                                     <>
@@ -88,7 +80,6 @@ const Card = ({ pokemonName }) => {
                                             <Image src={`../type/${pokemon.types[1].type.name}Label.svg`} alt='Shield second attribute' />
                                         }
                                     </>}
-
                             </Flex>
                         </Skeleton>
                         <Link
@@ -100,7 +91,6 @@ const Card = ({ pokemonName }) => {
                             onClick={() => goToDeatails(navigate, pokemonName)}
                         >Detalhes</Link>
                     </Flex>
-
                     <Flex
                         w={"220px"}
                         position={"relative"}
@@ -142,16 +132,10 @@ const Card = ({ pokemonName }) => {
                                 }}
                             > Excluir</Button>
                         }
-
                     </Flex>
                 </>
-
-                }
-                    
+                }            
                 </Flex>
-
-
-
             </ScaleFade>
         </>
 

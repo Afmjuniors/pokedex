@@ -4,7 +4,6 @@ import { useParams } from 'react-router-dom'
 import Layout from '../../components/Layout/Layout'
 import pokeBola from "../../assets/pokebola2.svg"
 import { GlobalContext } from '../../contexts/GlobalContext'
-import { goToDeatails } from '../../routes/coordinator'
 
 
 
@@ -142,27 +141,21 @@ const DeatailsPage = () => {
               top={"-120px"}
               right={"20px"}
               src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`} alt='Pokemon Image' />
-
-
             <Flex 
             marginTop={"44px"}
             bgColor={"#ffffff"} 
             h={"100%"} 
             borderRadius="8px"
             padding={"18px"}
-            flexDirection={"column"}
-            
-           
+            flexDirection={"column"}       
             >
               <Heading marginBottom={"16px"} fontSize={"24px"}>Moves:</Heading>
               <Flex flexDirection={"column"}
               alignItems={"flex-start"}
               gap={"16px"}
-              > 
-
+              >
               {
-                pokemon.moves &&
-              
+                pokemon.moves &&              
                 pokemon.moves.filter((mv,i)=> i < 6)
                 .map((move)=><Text 
                 key={move.move.name}
@@ -170,12 +163,8 @@ const DeatailsPage = () => {
                 bgColor={"#ECECEC"}
                 padding={"6px"}
                 border={"1px dashed grey"}
-                borderRadius={"12px"}
-                
-                >{(move.move.name).replace("-", " ")}</Text>)
-               
-                
-               
+                borderRadius={"12px"}                
+                >{(move.move.name).replace("-", " ")}</Text>) 
               }
               </Flex>
             </Flex>

@@ -23,8 +23,7 @@ const PokedexPage = () => {
   return (
     <Layout>
       <Heading color={"#ffffff"}>Meus Pokémons</Heading>
-      <Flex marginTop={"20px"} gap={"20px"} flexWrap={"wrap"}>
-        
+      <Flex marginTop={"20px"} gap={"20px"} flexWrap={"wrap"}>       
         {context.pokedex.map((pokemon)=>
        ( <Skeleton key={pokemon} isLoaded={!isLoading}>
          <Card  pokemonName={pokemon} />
