@@ -2,18 +2,15 @@ import {
     Modal,
     ModalOverlay,
     ModalContent,
-    Button,
     Flex,
     Heading,
     Text,
-    useDisclosure,
+    
 } from '@chakra-ui/react'
-import { useContext, useEffect, useState } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useContext } from 'react'
 import { GlobalContext } from '../../contexts/GlobalContext'
 
 const ModalPokemon = () => {
-    const location = useLocation()
     const {isOpen,setIsOpen, flow} = useContext(GlobalContext)
 
     const handleFlow = () => {

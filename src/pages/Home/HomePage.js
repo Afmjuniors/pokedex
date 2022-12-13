@@ -1,18 +1,14 @@
-import { Box, Button, ButtonGroup, Flex, Heading, Image, Link, Modal, ModalBody, ModalCloseButton, ModalContent, ModalHeader, ModalOverlay, Skeleton, Stack, Text, useDisclosure } from '@chakra-ui/react'
+import {  Button, ButtonGroup, Flex, Heading,  Skeleton,   useDisclosure } from '@chakra-ui/react'
 import React, { useContext, useEffect, useState } from 'react'
 import Layout from '../../components/Layout/Layout'
 import Card from '../../components/Card/Card'
 import axios from 'axios'
 import { BASE_URL } from '../../constants/BASE_URL'
-import { useLocation, useNavigate, useParams } from 'react-router-dom'
-import { goToHomePage, goToHomeTurnPage } from '../../routes/coordinator'
+import {  useNavigate, useParams } from 'react-router-dom'
+import {  goToHomeTurnPage } from '../../routes/coordinator'
 import { GlobalContext } from '../../contexts/GlobalContext'
-import ModalPokemon from '../../components/modal/ModalPokemon'
 
 const HomePage = () => {
-  const context = useContext(GlobalContext)
-  const { isOpen, onOpen, onClose } = useDisclosure()
-  const {pokedex, setPokedex, removePokedexFromLocalStorage } = context
   const [isLoading, setIsLoading] = useState(false)
   const [pokemons, setPokemons] = useState([])
   const [numbMin, setNumbMin] = useState(0)
@@ -77,12 +73,8 @@ const HomePage = () => {
        ( <Skeleton key={pokemon.name} isLoaded={!isLoading}>
          <Card  pokemonName={pokemon.name} />
          </Skeleton>)
-        )  
-        }
-        
-       
+        )}           
       </Flex>
-
       <ButtonGroup marginTop={"32px"}>
         {
           pageNumber !== 1 &&        
