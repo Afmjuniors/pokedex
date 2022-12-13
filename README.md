@@ -182,7 +182,6 @@ Project Link: [https://github.com/Afmjuniors/projeto-react-apis](https://github.
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
-* [Figma´s template](https://www.figma.com/file/KseyA2Ofghiek2Cy3ZaDre/Poked%C3%A9x?node-id=0%3A1&t=0Ecay1N7WE5TS0rc-0)
 * [PokeApi - API](https://pokeapi.co/)
 
 
