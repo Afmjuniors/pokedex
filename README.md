@@ -87,7 +87,7 @@
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
-Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following:  `Pokedex Labenu`, `A website with pokemons to capture in your own pokedex`
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
