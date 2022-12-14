@@ -22,7 +22,7 @@ const PokedexPage = () => {
 
   return (
     <Layout>
-      <Heading color={"#ffffff"}>Meus Pokémons</Heading>
+      <Heading color={"#ffffff"}>Meus Pokémons ({context.pokedex.length}) </Heading>
       <Flex marginTop={"20px"} gap={"20px"} flexWrap={"wrap"}>       
         {context.pokedex.map((pokemon)=>
        ( <Skeleton key={pokemon} isLoaded={!isLoading}>

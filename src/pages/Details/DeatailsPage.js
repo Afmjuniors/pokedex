@@ -30,8 +30,7 @@ const DeatailsPage = () => {
         position={"relative"}
         bgImage={pokeBola}
         bgRepeat={"no-repeat"}
-        bgPosition={"right"}
-        
+        bgPosition={"right"}        
         transition={" width 10s"}
         w={"100%"}
         h={"664px"}
@@ -45,6 +44,7 @@ const DeatailsPage = () => {
               borderRadius={"8px"}
               w={"282px"}
               h={"282px"}
+              padding={"32px"}
               display={"flex"}
             ><Image src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`} alt='sprite front default' /> </Box>
            {pokemon.sprites && pokemon.sprites.back_default &&
@@ -52,6 +52,7 @@ const DeatailsPage = () => {
               display={"flex"}
               borderRadius={"8px"}
               marginTop={"48px;"}
+              padding={"32px"}
               w={"282px"}
               h={"282px"}              
             >              

@@ -4,6 +4,7 @@ import DeatailsPage from '../pages/Details/DeatailsPage'
 import HomePage from '../pages/Home/HomePage'
 import PageNotFound from '../pages/PageNotFound/PageNotFound'
 import PokedexPage from '../pages/Pokedex/PokedexPage'
+import TypesPage from '../pages/TypesPage/TypesPage'
 
 const Router = () => {
   return (
@@ -14,6 +15,7 @@ const Router = () => {
         <Route path="/page/:page" element={<HomePage />}/>
         <Route path="/pokedex" element={<PokedexPage/>}/>
         <Route path="/pokemon/:pokemonName" element={<DeatailsPage/>}/>
+        <Route path="/tipo/:type" element={<TypesPage/>}/>
     </Routes>
 
    </BrowserRouter>
