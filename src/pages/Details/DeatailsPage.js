@@ -1,4 +1,4 @@
-import { Box, Flex, Heading, Image, Progress, ScaleFade, Skeleton, Stack, Text } from '@chakra-ui/react'
+import { Box, Fade, Flex, Heading, Image, Progress, ScaleFade, Skeleton, SlideFade, Stack, Text } from '@chakra-ui/react'
 import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import Layout from '../../components/Layout/Layout'
@@ -10,6 +10,7 @@ import { GlobalContext } from '../../contexts/GlobalContext'
 
 const DeatailsPage = () => {
   const params = useParams()
+  const [isAnimation, setIsAnimation] = useState(false)
   const {fetchPokemonByName,
      isLoading, 
      type1,    
@@ -23,13 +24,15 @@ const DeatailsPage = () => {
 
   return (
     <Layout>        
-      <Heading color={"#ffffff"}>Deatalhes</Heading>     
-      <ScaleFade initialScale={0.9} in={true}>
-      <Flex        
+      <Heading color={"#ffffff"}>Deatalhes</Heading>           
+      <SlideFade  in offsetX={"-100%"} offsetY={"-100%"} animateOpacity  >        
+      <Flex       
         position={"relative"}
         bgImage={pokeBola}
         bgRepeat={"no-repeat"}
         bgPosition={"right"}
+        
+        transition={" width 10s"}
         w={"100%"}
         h={"664px"}
         borderRadius={"38px"}
@@ -154,8 +157,7 @@ const DeatailsPage = () => {
               alignItems={"flex-start"}
               gap={"16px"}
               >
-              {
-                pokemon.moves &&              
+              { pokemon.moves &&              
                 pokemon.moves.filter((mv,i)=> i < 6)
                 .map((move)=><Text 
                 key={move.move.name}
@@ -171,7 +173,7 @@ const DeatailsPage = () => {
           </Flex>
         </Flex>
       </Flex>
-      </ScaleFade>
+      </SlideFade>
     </Layout>
   )
 
