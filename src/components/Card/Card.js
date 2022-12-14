@@ -104,7 +104,19 @@ const Card = ({ pokemonName }) => {
                             right={"12px"}
                             src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`} alt='Pokemon Image' />
 
-                        {location.pathname === "/" || location.pathname === "/page/" + params.page ?
+                        {location.pathname === "/pokedex"?
+                        <Button
+                        w={"146px"}
+                        marginTop={"auto"}
+                        marginBottom={"12px"}
+                        color={"#ffffff"}
+                        bgColor={"#FF6262"}
+                        onClick={() => {
+                            setFlow(2)
+                            handleChangePokedex(pokemonName, "remove")
+                            setIsOpen(true)
+                        }}
+                    > Excluir</Button>:
                             <Button
                                 w={"146px"}
                                 marginTop={"auto"}
@@ -118,19 +130,8 @@ const Card = ({ pokemonName }) => {
                                         setIsOpen(true)
                                     }
                                 }}
-                            > Capturar!</Button> :
-                            <Button
-                                w={"146px"}
-                                marginTop={"auto"}
-                                marginBottom={"12px"}
-                                color={"#ffffff"}
-                                bgColor={"#FF6262"}
-                                onClick={() => {
-                                    setFlow(2)
-                                    handleChangePokedex(pokemonName, "remove")
-                                    setIsOpen(true)
-                                }}
-                            > Excluir</Button>
+                            > Capturar!</Button> 
+                            
                         }
                     </Flex>
                 </>
