@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { Button, Flex, Heading, Image, Link, ScaleFade, Skeleton, Spinner, Stack, Text, } from '@chakra-ui/react'
 import pokeBola from "../../assets/pokebola.png"
-import { useLocation, useNavigate, useParams } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { goToDeatails } from '../../routes/coordinator'
 import axios from 'axios'
 import { BASE_URL } from '../../constants/BASE_URL'
@@ -17,11 +17,9 @@ const Card = ({ pokemonName }) => {
         setFlow,
     } = context
     const location = useLocation()
-    const params = useParams()
     const navigate = useNavigate()
     const [pokemon, setPokemon] = useState({})
-    const [type1, setType1] = useState({})
-    const [type2, setType2] = useState({})
+    const [typesLocal, setTypesLocal] = useState([])
     const [isLoading, setIsLoading] = useState(false)
 
     console.log();
@@ -34,12 +32,7 @@ const Card = ({ pokemonName }) => {
             setIsLoading(true)
             const response = await axios.get(`${BASE_URL}/pokemon/${pokemonName}`)
             setPokemon(response.data)
-            if (response.data.types[0].type.name) {
-                setType1(typePokemon[response.data.types[0].type.name])
-                if (response.data.types[1].type.name) {
-                    setType2(typePokemon[response.data.types[1].type.name])
-                }
-            }
+            setTypesLocal([typePokemon[response.data.types[0].type.name], typePokemon[response.data.types[1]?.type.name]])
             setIsLoading(false)
         } catch (error) {
             setIsLoading(false)
@@ -58,7 +51,7 @@ const Card = ({ pokemonName }) => {
                     w={"440px"}
                     h={"210px"}
                     borderRadius={"12px"}
-                    bgColor={type1 && type1.color}
+                    bgColor={typesLocal[0] && typesLocal[0].color}
                     marginTop={"36px"}
                     justifyContent={isLoading ? "center" : "space-between"}
                 >{isLoading ? <Spinner alignSelf={"center"} justifySelf={"center"} color={"white"} size={"xl"} /> :
@@ -73,8 +66,8 @@ const Card = ({ pokemonName }) => {
                             </Skeleton>
                             <Skeleton isLoaded={!isLoading}>
                                 <Flex paddingTop={"8px"} gap={"16px"}>
-                                    {pokemon.types?.map((typePokemon) => {
-                                        return <Image src={`../type/${typePokemon.type.name}Label.svg`} alt='Shield first attribute' />
+                                    {pokemon.types?.map((tipo) => {
+                                        return <Image key={tipo.type.name} src={typePokemon[tipo.type.name]?.urlImg} alt='Shield first attribute' />
                                     })}
                                 </Flex>
                             </Skeleton>
@@ -98,7 +91,7 @@ const Card = ({ pokemonName }) => {
                                 h={"193px"}
                                 bottom={"70px"}
                                 right={"12px"}
-                                src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`} alt='Pokemon Image' />
+                                src={pokemon.sprites.other['official-artwork']['front_default']} alt='Pokemon Image' />
 
                             {location.pathname === "/pokedex" ?
                                 <Button

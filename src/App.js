@@ -1,5 +1,5 @@
 import { ChakraProvider } from '@chakra-ui/react'
-import  GlobalState  from './constants/GlobalState'
+import GlobalState from './contexts/GlobalState'
 import { GlobalContext } from './contexts/GlobalContext'
 import Router from './routes/Router'
 
@@ -8,15 +8,15 @@ import Router from './routes/Router'
 
 const App = () => {
 
-const context = GlobalState()
+  const context = GlobalState()
 
   return (
     <GlobalContext.Provider value={context}>
       <ChakraProvider>
-        <Router/>
+        <Router />
       </ChakraProvider>
     </GlobalContext.Provider>
-    
+
   )
 }
 

@@ -1,16 +1,16 @@
-import { Button, ButtonGroup, Flex, Heading, Image, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Select, Skeleton, useDisclosure } from '@chakra-ui/react'
+import { Box, Button, ButtonGroup, Flex, Heading, Skeleton } from '@chakra-ui/react'
 import React, { useContext, useEffect, useState } from 'react'
 import Layout from '../../components/Layout/Layout'
 import Card from '../../components/Card/Card'
 import axios from 'axios'
 import { BASE_URL } from '../../constants/BASE_URL'
 import { useNavigate, useParams } from 'react-router-dom'
-import { goToHomeTurnPage, goToTypes } from '../../routes/coordinator'
+import { goToHomeTurnPage } from '../../routes/coordinator'
 import { GlobalContext } from '../../contexts/GlobalContext'
-import { typePokemon } from '../../constants/type'
 import TypeModal from '../../components/TypeModal/TypeModal'
 
 const HomePage = () => {
+  const { pokedex } = useContext(GlobalContext)
   const [isLoading, setIsLoading] = useState(false)
   const [pokemons, setPokemons] = useState([])
   const [numbMin, setNumbMin] = useState(0)
@@ -40,12 +40,10 @@ const HomePage = () => {
 
   }
 
-
   useEffect(() => {
     if (params.page) {
       setNumbMin(Number(params.page) * perPage)
       setPageNumber(Number(params.page))
-
     }
   }, [])
 
@@ -67,23 +65,26 @@ const HomePage = () => {
     }
   }
 
-
   return (
     <Layout>
       <Flex justifyContent={"space-between"}>
-        <Heading color={"#ffffff"}>Todos os Pokémons <span>{params.type} ({numberPokemon})</span></Heading>
+        <Heading color={"#ffffff"}>
+          Todos os Pokémons <span>{params.type} ({numberPokemon})</span>
+        </Heading>
         {TypeModal()}
       </Flex>
-
-
-
       <Flex marginTop={"20px"} gap={"20px"} flexWrap={"wrap"}>
         {isLoading ||
-          pokemons.map((pokemon) =>
-          (<Skeleton key={pokemon.name} isLoaded={!isLoading}>
-            <Card pokemonName={pokemon.name} />
-          </Skeleton>)
-          )}
+          pokemons
+
+            .map((pokemon) =>
+
+            (<Skeleton key={pokemon.name} isLoaded={!isLoading}>
+              <Box filter={"auto"} brightness={pokedex.includes(pokemon.name) ? '40%' : '100%'}>
+                <Card pokemonName={pokemon.name} />
+              </Box>
+            </Skeleton>)
+            )}
       </Flex>
       <ButtonGroup marginTop={"32px"}>
         {
@@ -92,13 +93,11 @@ const HomePage = () => {
         }{pageNumber - 2 > 0 && <Button onClick={() => handlePageTurn(-2)} colorScheme='whiteAlpha'>{pageNumber - 2}</Button>
         }{pageNumber - 1 > 0 && <Button onClick={() => handlePageTurn(-1)} colorScheme='whiteAlpha'>{pageNumber - 1}</Button>}
         <Button colorScheme='blackAlpha'>{pageNumber}</Button>
-        {
-          pageNumber + 1 < lastPage && <Button onClick={() => handlePageTurn(1)} colorScheme='whiteAlpha'>{pageNumber + 1}</Button>
+        {pageNumber + 1 < lastPage && <Button onClick={() => handlePageTurn(1)} colorScheme='whiteAlpha'>{pageNumber + 1}</Button>
         }{pageNumber + 2 < lastPage && <Button onClick={() => handlePageTurn(2)} colorScheme='whiteAlpha'>{pageNumber + 2}</Button>
         }{pageNumber !== lastPage && <Button onClick={() => handlePageTurn(lastPage)} colorScheme='whiteAlpha'>Ultima Pagna({lastPage})</Button>
         }
       </ButtonGroup>
-
     </Layout>
   )
 }
