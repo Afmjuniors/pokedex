@@ -1,7 +1,8 @@
-import { Box, Collapse, Flex } from '@chakra-ui/react'
+import { Box, Collapse, Flex, Image } from '@chakra-ui/react'
 import React from 'react'
 import Header from '../Header/Header'
 import ModalPokemon from '../modal/ModalPokemon'
+import ContactModal from '../modal/ContactModal'
 
 const Layout = (props) => {
 
@@ -20,6 +21,14 @@ const Layout = (props) => {
                     {props.children}
                 </Box>
             </Collapse>
+            <Box position={"fixed"}
+                right={"16px"}
+                bottom={"16px"}
+                w={"150px"}>
+
+                <ContactModal />
+            </Box>
+
 
 
         </Flex>

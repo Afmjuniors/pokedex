@@ -5,13 +5,13 @@ import {
     Flex,
     Heading,
     Text,
-    
+
 } from '@chakra-ui/react'
 import { useContext } from 'react'
 import { GlobalContext } from '../../contexts/GlobalContext'
 
 const ModalPokemon = () => {
-    const {isOpen,setIsOpen, flow} = useContext(GlobalContext)
+    const { isOpen, setIsOpen, flow } = useContext(GlobalContext)
 
     const handleFlow = () => {
         if (flow === 1) {
@@ -23,8 +23,8 @@ const ModalPokemon = () => {
                     </Text>
                 </>
             )
-        }else {
-           return (
+        } else {
+            return (
 
                 <>
                     <Heading>Oh, no!</Heading>
@@ -32,27 +32,28 @@ const ModalPokemon = () => {
                         O Pokémon foi removido da sua Pokedéx
                     </Text>
                 </>
-           )
+            )
         }
     }
-        return (
-            <>
-                <Modal isOpen={isOpen} onClose={()=>setIsOpen(false)}>
-                    <ModalOverlay />
-                    <ModalContent>
-                        <Flex
-                            w={"450px"}
-                            h={"220px"}
-                            justifyContent={"center"}
-                            alignItems={"center"}
-                            flexDirection={"column"}
-                        >
-                            {handleFlow()}
-                        </Flex>
-                    </ModalContent>
-                </Modal>
-            </>
+    return (
+        <>
+            <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
+                <ModalOverlay />
+                <ModalContent>
 
-        )
-    }
-    export default ModalPokemon
+                    <Flex
+                        w={"450px"}
+                        h={"220px"}
+                        justifyContent={"center"}
+                        alignItems={"center"}
+                        flexDirection={"column"}
+                    >
+                        {handleFlow()}
+                    </Flex>
+                </ModalContent>
+            </Modal>
+        </>
+
+    )
+}
+export default ModalPokemon

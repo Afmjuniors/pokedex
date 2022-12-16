@@ -17,7 +17,7 @@ const PokedexPage = () => {
 
   return (
     <Layout>
-      <Heading color={"#ffffff"}>Meus Pokémons {context.pokedex.length > 0 ? `(${context.pokedex.length})` : "sem pokemon na pokédex"} </Heading>
+      <Heading color={"#ffffff"}>Meus Pokémons {context.pokedex.length > 0 ? `(${context.pokedex.length})` : " - Sem pokemons na pokédex"} </Heading>
       <Flex marginTop={"20px"} gap={"20px"} flexWrap={"wrap"}>
         {context.pokedex?.map((pokemon) =>
         (<Skeleton key={pokemon} isLoaded={!isLoading}>
