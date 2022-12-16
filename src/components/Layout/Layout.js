@@ -14,11 +14,11 @@ const Layout = (props) => {
             margin={"0 auto"} >
             <Header />
             <Collapse in={true} animateOpacity transition={"1s"}>
-            <ModalPokemon/>
+                <ModalPokemon />
 
-            <Box padding={"60px 40px"}>
-            {props.children}
-            </Box>
+                <Box padding={"60px 40px"}>
+                    {props.children}
+                </Box>
             </Collapse>
 
 

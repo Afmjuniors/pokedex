@@ -8,7 +8,7 @@ import axios from 'axios'
 import { BASE_URL } from '../../constants/BASE_URL'
 import { useParams } from 'react-router-dom'
 import { GlobalContext } from '../../contexts/GlobalContext'
-import TypeModal from '../../components/TypeModal/TypeModal'
+import TypeModal from '../../components/modal/TypeModal'
 
 const TypesPage = () => {
   const { pokedex } = useContext(GlobalContext)

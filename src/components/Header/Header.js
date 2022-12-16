@@ -1,4 +1,4 @@
-import { Button, Flex,  Image, Link} from '@chakra-ui/react'
+import { Button, Flex, Image, Link } from '@chakra-ui/react'
 import pokemonLogo from "../../assets/pokemon-logo.svg"
 import React, { useContext, useEffect, useState } from 'react'
 import { ChevronLeftIcon } from '@chakra-ui/icons'

@@ -91,7 +91,7 @@ const Card = ({ pokemonName }) => {
                                 h={"193px"}
                                 bottom={"70px"}
                                 right={"12px"}
-                                src={pokemon.sprites.other['official-artwork']['front_default']} alt='Pokemon Image' />
+                                src={pokemon.sprites && pokemon.sprites?.other['official-artwork']['front_default']} alt='Pokemon Image' />
 
                             {location.pathname === "/pokedex" ?
                                 <Button

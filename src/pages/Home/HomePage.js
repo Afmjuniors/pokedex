@@ -7,7 +7,7 @@ import { BASE_URL } from '../../constants/BASE_URL'
 import { useNavigate, useParams } from 'react-router-dom'
 import { goToHomeTurnPage } from '../../routes/coordinator'
 import { GlobalContext } from '../../contexts/GlobalContext'
-import TypeModal from '../../components/TypeModal/TypeModal'
+import TypeModal from '../../components/modal/TypeModal'
 
 const HomePage = () => {
   const { pokedex } = useContext(GlobalContext)
