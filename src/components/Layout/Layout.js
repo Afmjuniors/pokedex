@@ -24,7 +24,7 @@ const Layout = (props) => {
             <Box position={"fixed"}
                 right={"16px"}
                 bottom={"16px"}
-                w={"150px"}>
+                w={"100px"}>
 
                 <ContactModal />
             </Box>
