@@ -40,7 +40,7 @@ const ContactModal = () => {
                             padding={"24px"}
                             alignItems={"center"}
                         >
-                            <Link href='https://github.com/Afmjuniors/projeto-frontendreact' target="_blank" >
+                            <Link href='https://github.com/Afmjuniors/projeto-react-apis' target="_blank" >
                                 <Image w={"50px"} src={gitHub} alt={'GitHub Icon'} />
                             </Link>
                             <Link href='https://www.linkedin.com/in/afmjuniors/' target="_blank">
