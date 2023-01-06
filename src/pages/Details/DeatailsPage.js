@@ -27,7 +27,7 @@ const DeatailsPage = () => {
 
   return (
     <Layout>
-      <Heading color={"#ffffff"}>Deatalhes</Heading>
+      <Heading color={"#ffffff"}>Detalhes</Heading>
 
       {
         !pokemon.name ?
